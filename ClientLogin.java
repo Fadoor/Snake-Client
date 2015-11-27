@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 
-public class Gui {
+public class ClientLogin {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -32,7 +32,7 @@ public class Gui {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Gui window = new Gui();
+					ClientLogin window = new ClientLogin();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class Gui {
 	/**
 	 * Create the application.
 	 */
-	public Gui() {
+	public ClientLogin() {
 		initialize();
 	}
 
@@ -54,7 +54,7 @@ public class Gui {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Segoe Script", Font.PLAIN, 11));
-		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+		frame.getContentPane().setBackground(new Color(192, 192, 192));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -66,6 +66,8 @@ public class Gui {
 		frame.getContentPane().add(lblWelcomeToThe);
 		
 		textField = new JTextField();
+		textField.setBorder(null);
+		textField.setForeground(new Color(0, 0, 0));
 		textField.setBackground(Color.WHITE);
 		textField.setFont(new Font("Nyala", Font.ITALIC, 16));
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -90,6 +92,7 @@ public class Gui {
 		frame.getContentPane().add(chckbxRememberMe);
 		
 		passwordField = new JPasswordField();
+		passwordField.setBorder(null);
 		passwordField.setBounds(103, 158, 218, 30);
 		frame.getContentPane().add(passwordField);
 		
