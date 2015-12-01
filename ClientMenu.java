@@ -6,6 +6,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ClientMenu {
 
@@ -39,6 +41,7 @@ public class ClientMenu {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -50,23 +53,27 @@ public class ClientMenu {
 		frame.getContentPane().add(lblWelcomeToThe);
 		
 		JButton button = new JButton("Start new game");
+		button.setBackground(Color.LIGHT_GRAY);
 		button.setFont(new Font("Nyala", Font.ITALIC, 18));
-		button.setBounds(141, 84, 153, 23);
+		button.setBounds(140, 93, 153, 23);
 		frame.getContentPane().add(button);
 
 		JButton button_1 = new JButton("Highscore");
+		button_1.setBackground(Color.LIGHT_GRAY);
 		button_1.setFont(new Font("Nyala", Font.ITALIC, 18));
-		button_1.setBounds(141, 116, 153, 23);
+		button_1.setBounds(140, 125, 153, 23);
 		frame.getContentPane().add(button_1);
 		
 		JButton button_2 = new JButton("Delete game");
+		button_2.setBackground(Color.LIGHT_GRAY);
 		button_2.setFont(new Font("Nyala", Font.ITALIC, 18));
-		button_2.setBounds(141, 150, 153, 23);
+		button_2.setBounds(140, 159, 153, 23);
 		frame.getContentPane().add(button_2);
 		
-		JButton btnLogUd = new JButton("Log ud");
+		JButton btnLogUd = new JButton("Log out");
+		btnLogUd.setBackground(Color.LIGHT_GRAY);
 		btnLogUd.setFont(new Font("Nyala", Font.ITALIC, 18));
-		btnLogUd.setBounds(322, 217, 82, 23);
+		btnLogUd.setBounds(314, 217, 90, 23);
 		frame.getContentPane().add(btnLogUd);
 	}
 }

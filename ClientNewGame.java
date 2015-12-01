@@ -14,6 +14,7 @@ public class ClientNewGame {
 
 	private JFrame frame;
 	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -48,26 +49,64 @@ public class ClientNewGame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Nyala", Font.ITALIC, 15));
-		textField.setBounds(170, 100, 86, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblGameName = new JLabel("Game Name:");
-		lblGameName.setBounds(99, 103, 61, 14);
+		lblGameName.setFont(new Font("Nyala", Font.ITALIC, 20));
+		lblGameName.setBounds(29, 75, 103, 14);
 		frame.getContentPane().add(lblGameName);
 		
-		JButton button = new JButton("Log ud");
-		button.setBackground(Color.LIGHT_GRAY);
+		JButton btnLogOut = new JButton("Log out");
+		btnLogOut.setBackground(Color.LIGHT_GRAY);
+		btnLogOut.setFont(new Font("Nyala", Font.ITALIC, 18));
+		btnLogOut.setBounds(315, 217, 89, 23);
+		frame.getContentPane().add(btnLogOut);
+		
+		JLabel lblCreatejoinGame = new JLabel("Create/Join Game");
+		lblCreatejoinGame.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCreatejoinGame.setFont(new Font("Nyala", Font.ITALIC, 26));
+		lblCreatejoinGame.setBounds(62, 25, 298, 48);
+		frame.getContentPane().add(lblCreatejoinGame);
+		
+		JButton btnCreateGame = new JButton("Create Game");
+		btnCreateGame.setFont(new Font("Nyala", Font.ITALIC, 18));
+		btnCreateGame.setBackground(Color.LIGHT_GRAY);
+		btnCreateGame.setBounds(132, 110, 132, 23);
+		frame.getContentPane().add(btnCreateGame);
+		
+		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setForeground(Color.BLACK);
+		textField.setFont(new Font("Nyala", Font.ITALIC, 16));
+		textField.setColumns(10);
+		textField.setBorder(null);
+		textField.setBackground(Color.WHITE);
+		textField.setBounds(132, 69, 218, 30);
+		frame.getContentPane().add(textField);
+		
+		JButton button = new JButton("Back");
 		button.setFont(new Font("Nyala", Font.ITALIC, 18));
-		button.setBounds(322, 217, 82, 23);
+		button.setBackground(Color.LIGHT_GRAY);
+		button.setBounds(29, 218, 83, 23);
 		frame.getContentPane().add(button);
 		
-		JLabel label = new JLabel("Create Game");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Nyala", Font.ITALIC, 26));
-		label.setBounds(62, 25, 298, 48);
-		frame.getContentPane().add(label);
+		JButton btnJoinGame = new JButton("Join Game");
+		btnJoinGame.setFont(new Font("Nyala", Font.ITALIC, 18));
+		btnJoinGame.setBackground(Color.LIGHT_GRAY);
+		btnJoinGame.setBounds(132, 190, 132, 23);
+		frame.getContentPane().add(btnJoinGame);
+		
+		textField_1 = new JTextField();
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setForeground(Color.BLACK);
+		textField_1.setFont(new Font("Nyala", Font.ITALIC, 16));
+		textField_1.setColumns(10);
+		textField_1.setBorder(null);
+		textField_1.setBackground(Color.WHITE);
+		textField_1.setBounds(132, 149, 218, 30);
+		frame.getContentPane().add(textField_1);
+		
+		JLabel label_1 = new JLabel("Game Name:");
+		label_1.setFont(new Font("Nyala", Font.ITALIC, 20));
+		label_1.setBounds(29, 157, 103, 14);
+		frame.getContentPane().add(label_1);
 	}
 }

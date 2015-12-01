@@ -66,7 +66,7 @@ public class ClientHighscore {
 		JButton btnLogOut = new JButton("Log out");
 		btnLogOut.setBackground(Color.LIGHT_GRAY);
 		btnLogOut.setFont(new Font("Nyala", Font.ITALIC, 18));
-		btnLogOut.setBounds(321, 217, 83, 23);
+		btnLogOut.setBounds(315, 217, 89, 23);
 		frame.getContentPane().add(btnLogOut);
 		
 		JButton button = new JButton("Back");
