@@ -8,8 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 public class ClientLogin extends JPanel {
 
@@ -74,7 +79,30 @@ public class ClientLogin extends JPanel {
 				
 				ClientLogin This = (ClientLogin) (e.getComponent().getParent());
 				
-				This.client.changePage(new ClientMenu(This.client));
+				JSONObject Login = new JSONObject();
+				
+				try {
+					
+					Login.put("Username", This.textField.getText());
+					Login.put("Password", new String(This.passwordField.getPassword()));
+					Login.put("Method", "Login");
+					
+					JSONObject Response = This.client.request(Login);
+					
+					if (Response != null && Response.has("Result")) {
+						
+						if (Response.getBoolean("Result")) {
+						
+							This.client.changePage(new ClientMenu(This.client));
+						
+						}
+						
+					}
+					
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});

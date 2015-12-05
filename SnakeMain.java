@@ -1,11 +1,23 @@
 import java.awt.Container;
 import java.awt.EventQueue;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class SnakeMain {
+import org.json.JSONException;
+import org.json.JSONObject;
 
+public class SnakeMain {
+	
+	private String adress = "localhost";
+	private int port = 10800;
+	private Socket ServerSocket;
 	private JFrame frame;
 
 	/**
@@ -28,6 +40,7 @@ public class SnakeMain {
 	 * Create the application.
 	 */
 	public SnakeMain() {
+		
 		initialize();
 	}
 
@@ -50,6 +63,46 @@ public class SnakeMain {
 		panel.add(newJPanel);
 		panel.repaint();
 		panel.revalidate();
+	}
+	
+	public JSONObject request(JSONObject message) {
+		
+		System.out.println(message);
+		
+		JSONObject ServerMessage = null; // vi antager at serven svarer med null
+		
+		try {
+			
+			this.ServerSocket = new Socket(this.adress, this.port);
+			PrintWriter out = new PrintWriter(this.ServerSocket.getOutputStream(), true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(this.ServerSocket.getInputStream()));
+		
+			out.println(message.toString());
+			
+			try {
+				
+				ServerMessage = new JSONObject(in.readLine()); //Hvis serveren sender alt andet end et JSONObject så returnerer den null
+			
+			} catch (JSONException e) {
+				
+				ServerMessage = null;
+				
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.ServerSocket.close();
+			
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.out.println(ServerMessage);
+		return ServerMessage;
+		
 	}
 
 }
