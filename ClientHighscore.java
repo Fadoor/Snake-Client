@@ -5,6 +5,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.List;
@@ -69,5 +73,55 @@ public class ClientHighscore extends JPanel {
 		List list = new List();
 		list.setBounds(160, 80, 110, 180);
 		add(list);
+		
+		JSONObject UserHighscore = new JSONObject();
+		
+		int Highscore = -1;
+		
+		try {
+			
+			UserHighscore.put("Username", this.client.getCurrentUser());
+			UserHighscore.put("Method", "UserHighscore");
+			
+			JSONObject Response = this.client.request(UserHighscore);
+			
+			if (Response != null && Response.has("Result")) {
+				
+				Highscore = Response.getInt("Result");	
+			}
+			
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		JLabel lblNewLabel_1 = new JLabel(Integer.toString(Highscore));
+		lblNewLabel_1.setBackground(Color.WHITE);
+		lblNewLabel_1.setBounds(40, 85, 83, 23);
+		add(lblNewLabel_1);
+		
+		JSONObject GlobalHighscore = new JSONObject();
+		
+		Highscore = -1;
+		
+		try {
+			
+			GlobalHighscore.put("Method", "GlobalHighscore");
+			
+			JSONObject Response = this.client.request(GlobalHighscore);
+			
+			if (Response != null && Response.has("Result")) {
+				
+				Highscore = Response.getInt("Result");	
+			}
+			
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		JLabel label = new JLabel(Integer.toString(Highscore));
+		label.setBounds(299, 85, 83, 23);
+		add(label);
 	}
 }

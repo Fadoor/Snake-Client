@@ -92,6 +92,8 @@ public class ClientLogin extends JPanel {
 					if (Response != null && Response.has("Result")) {
 						
 						if (Response.getBoolean("Result")) {
+							
+							This.client.setCurrentUser(This.textField.getText());
 						
 							This.client.changePage(new ClientMenu(This.client));
 						

@@ -18,6 +18,7 @@ public class SnakeMain {
 	private String adress = "localhost";
 	private int port = 10800;
 	private Socket ServerSocket;
+	private String CurrentUser;
 	private JFrame frame;
 
 	/**
@@ -103,6 +104,14 @@ public class SnakeMain {
 		System.out.println(ServerMessage);
 		return ServerMessage;
 		
+	}
+
+	public String getCurrentUser() {
+		return CurrentUser;
+	}
+
+	public void setCurrentUser(String currentUser) {
+		CurrentUser = currentUser;
 	}
 
 }

@@ -6,6 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JComboBox;
@@ -50,6 +54,38 @@ public class ClientNewGame extends JPanel {
 		this.add(lblCreatejoinGame);
 		
 		JButton btnCreateGame = new JButton("Create Game");
+		btnCreateGame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent());
+				
+				JSONObject CreateGame = new JSONObject();
+				
+				try {
+					
+					CreateGame.put("GameName", This.textField.getText());
+					CreateGame.put("Method", "CreateGame");
+					
+					JSONObject Response = This.client.request(CreateGame);
+					
+					if (Response != null && Response.has("Result")) {
+						
+						if (Response.getBoolean("Result")) {
+						
+							This.client.changePage(new ClientGame(This.client));
+						
+						}
+						
+					}
+					
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
+			}
+		});
 		btnCreateGame.setFont(new Font("Nyala", Font.ITALIC, 18));
 		btnCreateGame.setBackground(Color.LIGHT_GRAY);
 		btnCreateGame.setBounds(142, 125, 132, 23);
