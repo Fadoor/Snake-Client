@@ -95,5 +95,4 @@ public class ClientNewGame extends JPanel {
 		comboBox.setBounds(142, 164, 218, 30);
 		add(comboBox);
 	}
-
 }

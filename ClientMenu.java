@@ -77,5 +77,4 @@ public class ClientMenu extends JPanel {
 		btnLogUd.setBounds(338, 254, 90, 23);
 		this.add(btnLogUd);
 	}
-
 }

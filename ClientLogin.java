@@ -55,7 +55,7 @@ public class ClientLogin extends JPanel {
 		label.setFont(new Font("Nyala", Font.ITALIC, 18));
 		label.setBounds(103, 142, 98, 19);
 		this.add(label);
-		
+
 		JCheckBox chckbxRememberMe = new JCheckBox("Remember me?");
 		chckbxRememberMe.setFont(new Font("Nyala", Font.ITALIC, 14));
 		chckbxRememberMe.setBackground(Color.LIGHT_GRAY);
@@ -83,5 +83,4 @@ public class ClientLogin extends JPanel {
 		btnLogIn.setBounds(103, 228, 89, 23);
 		this.add(btnLogIn);
 	}
-
 }
