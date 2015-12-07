@@ -22,7 +22,7 @@ public class ClientMenu extends JPanel {
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setLayout(null);
 		
-		JLabel lblWelcomeToThe = new JLabel("Welcome Name");
+		JLabel lblWelcomeToThe = new JLabel("Welcome " + this.client.getCurrentUser());
 		lblWelcomeToThe.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcomeToThe.setFont(new Font("Nyala", Font.ITALIC, 26));
 		lblWelcomeToThe.setBounds(62, 25, 298, 48);

@@ -12,6 +12,8 @@ import org.json.JSONObject;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.List;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ClientHighscore extends JPanel {
 	
@@ -26,18 +28,13 @@ public class ClientHighscore extends JPanel {
 		this.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("My Highscore:");
-		lblNewLabel.setFont(new Font("Nyala", Font.ITALIC, 15));
-		lblNewLabel.setBounds(40, 48, 83, 26);
+		lblNewLabel.setFont(new Font("Nyala", Font.ITALIC, 18));
+		lblNewLabel.setBounds(62, 48, 111, 26);
 		this.add(lblNewLabel);
 		
-		JLabel lblGameHighscores = new JLabel("Game Highscores:");
-		lblGameHighscores.setFont(new Font("Nyala", Font.ITALIC, 15));
-		lblGameHighscores.setBounds(163, 48, 107, 26);
-		this.add(lblGameHighscores);
-		
 		JLabel lblGlobalHighscore = new JLabel("Global Highscore:");
-		lblGlobalHighscore.setFont(new Font("Nyala", Font.ITALIC, 15));
-		lblGlobalHighscore.setBounds(299, 48, 105, 26);
+		lblGlobalHighscore.setFont(new Font("Nyala", Font.ITALIC, 18));
+		lblGlobalHighscore.setBounds(250, 48, 129, 26);
 		this.add(lblGlobalHighscore);
 		
 		JButton btnLogOut = new JButton("Log out");
@@ -56,6 +53,10 @@ public class ClientHighscore extends JPanel {
 		this.add(btnLogOut);
 		
 		JButton button = new JButton("Back");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -69,10 +70,6 @@ public class ClientHighscore extends JPanel {
 		button.setBackground(Color.LIGHT_GRAY);
 		button.setBounds(10, 254, 83, 23);
 		this.add(button);
-		
-		List list = new List();
-		list.setBounds(160, 80, 110, 180);
-		add(list);
 		
 		JSONObject UserHighscore = new JSONObject();
 		
@@ -96,8 +93,9 @@ public class ClientHighscore extends JPanel {
 		}
 		
 		JLabel lblNewLabel_1 = new JLabel(Integer.toString(Highscore));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_1.setBackground(Color.WHITE);
-		lblNewLabel_1.setBounds(40, 85, 83, 23);
+		lblNewLabel_1.setBounds(90, 85, 83, 23);
 		add(lblNewLabel_1);
 		
 		JSONObject GlobalHighscore = new JSONObject();
@@ -121,7 +119,8 @@ public class ClientHighscore extends JPanel {
 		}
 		
 		JLabel label = new JLabel(Integer.toString(Highscore));
-		label.setBounds(299, 85, 83, 23);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label.setBounds(297, 85, 59, 23);
 		add(label);
 	}
 }
