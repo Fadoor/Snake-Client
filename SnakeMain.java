@@ -18,7 +18,7 @@ public class SnakeMain {
 	private String adress = "localhost";
 	private int port = 10800;
 	private Socket ServerSocket;
-	private String CurrentUser;
+	private String CurrentUser = null;
 	private JFrame frame;
 
 	/**

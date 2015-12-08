@@ -31,6 +31,8 @@ public class ClientLogin extends JPanel {
 	public ClientLogin(SnakeMain client) {
 		this.client = client;
 		
+		this.client.setCurrentUser(null);
+		
 		this.setFont(new Font("Segoe Script", Font.PLAIN, 11));
 		this.setBackground(new Color(192, 192, 192));
 		this.setLayout(null);
