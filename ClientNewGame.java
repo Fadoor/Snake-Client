@@ -161,30 +161,34 @@ public class ClientNewGame extends JPanel {
 				
 				JSONObject JoinGame = new JSONObject();
 				
-				try {
-					
-					Item SelectItem = (Item) This.list.getSelectedValue();
-					
-					JoinGame.put("GameName", SelectItem.GameName);
-					JoinGame.put("Username", This.client.getCurrentUser());
-					JoinGame.put("Method", "JoinGame");
-					
-					JSONObject Response = This.client.request(JoinGame);
-					
-					if (Response != null && Response.has("Result")) {
+				Item SelectItem = (Item) This.list.getSelectedValue();
+				
+				if (SelectItem != null) {
+				
+					try {
 						
-						boolean ThisResult = Response.getBoolean("Result");
+						JoinGame.put("GameName", SelectItem.GameName);
+						JoinGame.put("Username", This.client.getCurrentUser());
+						JoinGame.put("Method", "JoinGame");
 						
-						if (ThisResult) {
+						JSONObject Response = This.client.request(JoinGame);
+						
+						if (Response != null && Response.has("Result")) {
 							
-							This.client.changePage(new ClientGame(This.client, SelectItem.GameName));
+							boolean ThisResult = Response.getBoolean("Result");
 							
+							if (ThisResult) {
+								
+								This.client.changePage(new ClientGame(This.client, SelectItem.GameName));
+								
+							}
 						}
+						
+					} catch (JSONException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-					
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				
 				}
 				
 			}
@@ -261,7 +265,7 @@ public class ClientNewGame extends JPanel {
 				
 				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent());
 				
-				This.client.changePage(new ClientLogin(This.client));
+				This.client.changePage(new ClientNewGame(This.client));
 			}
 		});
 		btnNewButton.setFont(new Font("Nyala", Font.ITALIC, 18));
