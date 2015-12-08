@@ -111,7 +111,7 @@ public class SnakeMain {
 	}
 
 	public void setCurrentUser(String currentUser) {
-		CurrentUser = currentUser;
+		CurrentUser = currentUser.toLowerCase();
 	}
 
 }
