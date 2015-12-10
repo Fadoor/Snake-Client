@@ -23,8 +23,9 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ClientNewGame extends JPanel {
-
+public class ClientNewGame extends JPanel { //ClientNewGame Nedarver funktioner fra Jpanel
+	
+	//Instantiering af lokalvariable
 	private JTextField textField;
 	private SnakeMain client;
 	private JList list;
@@ -32,14 +33,15 @@ public class ClientNewGame extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ClientNewGame(SnakeMain client) {
-		this.client = client;
+	public ClientNewGame(SnakeMain client) { //Konstuktør oprettes som ejes af SnakeMain som jeg kalder for client.
+		this.client = client; // Sætter client ind i this.client
 		
-		class Item {
+		class Item { //Midlertidig klasse en klasse der kan holde på highscoren og spilnavnet. Det kan returnere en string som ser flot ud til liste visning.
 			
 			public int Highscore;
 			public String GameName;
 			
+			//Konstuktør oprettes som ejes af Item som jeg kalder for Item. Den indeholder en int og en String
 			public Item(int Highscore, String GameName) {
 				
 				this.Highscore = Highscore;
@@ -64,13 +66,13 @@ public class ClientNewGame extends JPanel {
 		this.add(lblGameName);
 		
 		JButton btnLogOut = new JButton("Log out");
-		btnLogOut.addMouseListener(new MouseAdapter() {
+		btnLogOut.addMouseListener(new MouseAdapter() { //Tilføjer en Mouselistener som  gør jeg kan trykke på knappen Log out
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent());
+				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent()); //Component spørger hvad e er, som er vores MouseClick, og getParent er hvor knappen er henne, som er min ClientNewGame
 				
-				This.client.changePage(new ClientLogin(This.client));
+				This.client.changePage(new ClientLogin(This.client)); // Her skiftes der til ClientLogin siden, når der klikkes på knappen.
 			}
 		});
 		btnLogOut.setBackground(Color.LIGHT_GRAY);
@@ -85,27 +87,27 @@ public class ClientNewGame extends JPanel {
 		this.add(lblCreatejoinGame);
 		
 		JButton btnCreateGame = new JButton("Create Game");
-		btnCreateGame.addMouseListener(new MouseAdapter() {
+		btnCreateGame.addMouseListener(new MouseAdapter() { //Tilføjer en Mouselistener som  gør jeg kan trykke på knappen Create game
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent());
+				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent()); //Component spørger hvad e er, som er vores MouseClick, og getParent er hvor knappen er henne, som er min ClientNewGame
 				
-				JSONObject CreateGame = new JSONObject();
+				JSONObject CreateGame = new JSONObject(); //Opretter et JSONObject som hedder CreateGame og modtager et JSONObject
 				
 				try {
 					
-					CreateGame.put("GameName", This.textField.getText());
-					CreateGame.put("Username", This.client.getCurrentUser());
-					CreateGame.put("Method", "CreateGame");
+					CreateGame.put("GameName", This.textField.getText()); //Jeg indsætter en værdi i CreateGame under GameName som indeholder this.texfield.getText()
+					CreateGame.put("Username", This.client.getCurrentUser()); //Vi indsætter en værdi i CreateGame under Username, som indeholder This.client.getCurrentUser().
+					CreateGame.put("Method", "CreateGame"); // Her fortæller jeg at Jeg bruger jeg metoden CreateGame
 					
-					JSONObject Response = This.client.request(CreateGame);
+					JSONObject Response = This.client.request(CreateGame); //Her oprettes der et ny JSONObject hvor CreateGame sættes ind i den nye variabel
 					
-					if (Response != null && Response.has("Result")) {
+					if (Response != null && Response.has("Result")) { // her tjekker jeg om Response som er vores CreateGame ikke er null og det har et resultat.
 						
-						if (Response.getBoolean("Result")) {
+						if (Response.getBoolean("Result")) { //Hvis Response er true; da jeg altid antager en boolean er true
 						
-							This.client.changePage(new ClientGame(This.client, This.textField.getText()));
+							This.client.changePage(new ClientGame(This.client, This.textField.getText())); // Her skifter jeg side til ClientMenu hvis CreateGame køres rigtigt.
 						
 						}
 						
@@ -136,11 +138,11 @@ public class ClientNewGame extends JPanel {
 		JButton button = new JButton("Back");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) { //Tilføjer en Mouselistener som  gør jeg kan trykke på knappen Back
 				
-				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent());
+				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent()); //Component spørger hvad e er, som er vores MouseClick, og getParent er hvor knappen er henne, som er min ClientLogin
 				
-				This.client.changePage(new ClientMenu(This.client));
+				This.client.changePage(new ClientMenu(This.client)); // Her skiftes der til ClientMenu siden, når der klikkes på knappen.
 			}
 		});
 		button.setFont(new Font("Nyala", Font.ITALIC, 18));
@@ -149,7 +151,7 @@ public class ClientNewGame extends JPanel {
 		this.add(button);
 		
 		JButton btnJoinGame = new JButton("Join Game");
-		btnJoinGame.addActionListener(new ActionListener() {
+		btnJoinGame.addActionListener(new ActionListener() { //Tilføjer en Mouselistener som  gør jeg kan trykke på knappen Join Game
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -157,29 +159,29 @@ public class ClientNewGame extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent());
+				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent()); //Component spørger hvad e er, som er vores MouseClick, og getParent er hvor knappen er henne, som er min ClientNewGame
 				
-				JSONObject JoinGame = new JSONObject();
+				JSONObject JoinGame = new JSONObject(); //Opretter et JSONObject som hedder JoinGame og modtager et JSONObject
 				
-				Item SelectItem = (Item) This.list.getSelectedValue();
+				Item SelectItem = (Item) This.list.getSelectedValue(); //Opretter et Item object som har navnet SelectItem og indeholder (Item) som indeholder This.list.getSelectedValue() som er det brugeren har markeret på siden.
 				
-				if (SelectItem != null) {
+				if (SelectItem != null) { // Hvis SelecItem ikke er null kører try nedenunder
 				
 					try {
 						
-						JoinGame.put("GameName", SelectItem.GameName);
-						JoinGame.put("Username", This.client.getCurrentUser());
-						JoinGame.put("Method", "JoinGame");
+						JoinGame.put("GameName", SelectItem.GameName); // Jeg indsætter en værdi i JoinGame under GameName som indeholder SelectItem.GameName
+						JoinGame.put("Username", This.client.getCurrentUser()); // Jeg indsætter en værdi i JoinGame under GameName som indeholder This.client.getCurrentUser()
+						JoinGame.put("Method", "JoinGame"); // Her fortæller jeg at Jeg bruger jeg metoden JoinGame
 						
-						JSONObject Response = This.client.request(JoinGame);
+						JSONObject Response = This.client.request(JoinGame); //Her oprettes der et ny JSONObject hvor JoinGame indsættes ind den nye variabel
 						
-						if (Response != null && Response.has("Result")) {
+						if (Response != null && Response.has("Result")) { // her tjekker jeg om Response som er vores login ikke er null og det har et resultat.
 							
-							boolean ThisResult = Response.getBoolean("Result");
+							boolean ThisResult = Response.getBoolean("Result"); //Her oprettes en boolean med navnet ThisResult som indeholder Response som indeholder getBoolean("Result")
 							
-							if (ThisResult) {
+							if (ThisResult) { //Hvis vi får ThisResult fortsætter if
 								
-								This.client.changePage(new ClientGame(This.client, SelectItem.GameName));
+								This.client.changePage(new ClientGame(This.client, SelectItem.GameName)); // Her skifter jeg side til ClientGame hvis det er et gylidigt login.
 								
 							}
 						}
@@ -203,21 +205,21 @@ public class ClientNewGame extends JPanel {
 		label_1.setBounds(10, 170, 90, 30);
 		this.add(label_1);
 		
-		JSONObject Games = new JSONObject();
+		JSONObject Games = new JSONObject(); //Opretter et JSONObject som hedder Games og modtager et JSONObject
 		
-		JSONObject Response;
+		JSONObject Response; // Vi opretter et JSONObject med navnet Respone uden nogen værdi
 		
-		JSONArray GameList = null;
+		JSONArray GameList = null; //Her opretter vi et JSONArray med navnet Gamelist som er sat til null
 		
 		try {
 			
-			Games.put("Method", "ShowGames");
+			Games.put("Method", "ShowGames"); // Her fortæller jeg at Jeg bruger jeg metoden ShowGames
 			
-			Response = this.client.request(Games);
+			Response = this.client.request(Games); //Her oprettes der et ny JSONObject hvor Games ind sættes ind den nye variabel
 			
-			if (Response != null && Response.has("Result")) {
+			if (Response != null && Response.has("Result")) { // her tjekker jeg om Response som er vores login ikke er null og det har et resultat.
 				
-				GameList = Response.getJSONArray("Result");	
+				GameList = Response.getJSONArray("Result");	 //Her oprettes der et nyt JSONArray med navnet GameList som indeholder Response.getJSONArray("Result")
 			}
 			
 		} catch (JSONException e1) {
@@ -229,19 +231,19 @@ public class ClientNewGame extends JPanel {
 		list.setBounds(103, 159, 225, 68);
 		add(list);
 		
-		if (GameList != null) {
+		if (GameList != null) { //Hvis Gamelist ikke er lig med null kører if
 			
-			DefaultListModel ListModel = new DefaultListModel();
+			DefaultListModel ListModel = new DefaultListModel(); // Opretter en DeaultListModel med navnet ListModel som modtager en DefaultListModel
 			
-			JSONObject CurrentGame;
+			JSONObject CurrentGame; //Vi opretter et JSONObject med navnet CurrentGame uden nogen værdi
 			
-			for (int i = 0; i < GameList.length(); i++) {
+			for (int i = 0; i < GameList.length(); i++) { // i vores for laves en int som hedder i og sætte lig med 0. Hvis i er mindre en GameList kører try, og loppet kører igen og 1 lægges hele tiden til hver gang.
 				
 				try {
 					
-					CurrentGame = GameList.getJSONObject(i);
+					CurrentGame = GameList.getJSONObject(i); //her indeholder CurrentGame en GameList, som indeholder getJSONObject(i)
 					
-					ListModel.addElement(new Item(CurrentGame.getInt("Highscore"), CurrentGame.getString("Name")));
+					ListModel.addElement(new Item(CurrentGame.getInt("Highscore"), CurrentGame.getString("Name"))); // ListModel tilføjer et element som jeg kalder new Item som indeholder CurrentGame.getInt("Highscore") og CurrentGame.getString("Name")
 				
 				} catch (JSONException e1) {
 					// TODO Auto-generated catch block
@@ -250,22 +252,22 @@ public class ClientNewGame extends JPanel {
 			}
 
 			list.setModel(ListModel);
-			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Dette gør at man kun kan markere et spil af gangen.
 			
-			JScrollPane scrollPane_1 = new JScrollPane(list);
+			JScrollPane scrollPane_1 = new JScrollPane(list); // her tilføjer jeg et ScrollPanel til siden hvor man vælger aktive spil.
 	        scrollPane_1.setBounds(103, 159, 225, 68);
 	        this.add(scrollPane_1);
 			
 		}
 		
 		JButton btnNewButton = new JButton("Refresh");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		btnNewButton.addMouseListener(new MouseAdapter() { //Tilføjer en Mouselistener som  gør jeg kan trykke på knappen Refresh
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent());
+				ClientNewGame This = (ClientNewGame) (e.getComponent().getParent()); //Component spørger hvad e er, som er vores MouseClick, og getParent er hvor knappen er henne, som er min ClientNewGame
 				
-				This.client.changePage(new ClientNewGame(This.client));
+				This.client.changePage(new ClientNewGame(This.client)); // Her skifter jeg side til ClientNewGame, som er en måde at refrehse siden på.
 			}
 		});
 		btnNewButton.setFont(new Font("Nyala", Font.ITALIC, 18));
